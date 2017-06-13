@@ -70,14 +70,14 @@ function main(){
     GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(triangle_vertex), GL.STATIC_DRAW);
 
     //FACES :
-    var triangle_faces = [0,1,2];
-    var TRIANGLE_FACES= GL.createBuffer ();
+    let triangle_faces = [0,1,2];
+    let TRIANGLE_FACES= GL.createBuffer ();
     GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, TRIANGLE_FACES);
     GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(triangle_faces), GL.STATIC_DRAW);
 
     GL.clearColor(0.0, 0.0, 0.0, 0.0);
 
-    var animate=function() {
+    let animate=function() {
 
         GL.viewport(0.0, 0.0, CANVAS.width, CANVAS.height);
         GL.clear(GL.COLOR_BUFFER_BIT);
