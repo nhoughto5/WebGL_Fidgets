@@ -282,8 +282,7 @@ textarea {
 }
 canvas {
     padding: 0;
-    margin: auto;
-    margin-top: 10%;
+    margin: 10% auto auto auto;
     display: block;
     width: 600px;
     height: 300px;
