@@ -17,6 +17,7 @@ function triangles(){
     let arr = createHiDPICanvas(width, height, null, "experimental-webgl");
     canvas = arr[0];
     ctx = arr[1];
+    canvas.style.backgroundColor = "red";
     document.getElementById("canvasDiv").appendChild(canvas);
 
     let triangles = new Triangles(ctx, canvas);
