@@ -19,8 +19,8 @@ function getContext(CANVAS, ctxType) {
     }
 }
 
-var PIXEL_RATIO = (function () {
-    var ctx = document.createElement("canvas").getContext("2d"),
+let PIXEL_RATIO = (function () {
+    let ctx = document.createElement("canvas").getContext("2d"),
         dpr = window.devicePixelRatio || 1,
         bsr = ctx.webkitBackingStorePixelRatio ||
             ctx.mozBackingStorePixelRatio ||
@@ -47,7 +47,7 @@ function createHiDPICanvas(w, h, ratio, ctxType) {
     can.style.height = h + "px";
     can.id = "canvas";
     let ctx = getContext(can, ctxType);
-    if(ctxType === "2d"){
+    if (ctxType === "2d") {
         ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
     }
     return [can, ctx];
@@ -55,11 +55,31 @@ function createHiDPICanvas(w, h, ratio, ctxType) {
 
 Element.prototype.remove = function () {
     this.parentElement.removeChild(this);
-}
+};
+
 NodeList.prototype.remove = HTMLCollection.prototype.remove = function () {
-    for (var i = this.length - 1; i >= 0; i--) {
+    for (let i = this.length - 1; i >= 0; i--) {
         if (this[i] && this[i].parentElement) {
             this[i].parentElement.removeChild(this[i]);
         }
     }
-}
+};
+
+let LIBS = {
+    degToRad: function (angle) {
+        return (angle * Math.PI / 180);
+    },
+
+    get_projection: function (angle, a, zMin, zMax) {
+        const tan = Math.tan(LIBS.degToRad(0.5 * angle)),
+            A = -(zMax + zMin) / (zMax - zMin),
+            B = (-2 * zMax * zMin) / (zMax - zMin);
+
+        return [
+            0.5 / tan, 0, 0, 0,
+            0, 0.5 * a / tan, 0, 0,
+            0, 0, A, -1,
+            0, 0, B, 0
+        ];
+    }
+};

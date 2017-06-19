@@ -24,4 +24,15 @@ function triangles(){
     triangles.render();
 }
 
+function triangles_3d(){
+    let arr = createHiDPICanvas(width, height, null, "experimental-webgl");
+    canvas = arr[0];
+    ctx = arr[1];
+    canvas.style.backgroundColor = "black";
+    document.getElementById("canvasDiv").appendChild(canvas);
+
+    let triangles = new Triangles_3D(ctx, canvas);
+    triangles.render();
+}
+
 window.onload = main;
